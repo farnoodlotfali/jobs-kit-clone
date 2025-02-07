@@ -70,6 +70,7 @@ const LoginScreen = () => {
             href={PAGE_URL.register}
             color="secondary"
             underline="hover"
+            prefetch={false}
           >
             ایجاد حساب کاربری
           </MuiLink>
