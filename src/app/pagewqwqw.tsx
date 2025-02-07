@@ -3,16 +3,14 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 
 import { useAppContext } from "@/hooks/useAppContext";
-import ModeSwitch from "@/ModeSwitch";
 
 export default function Home() {
   const { toggleMode } = useAppContext();
   return (
     <Box p={6}>
-      <Paper sx={{ height: 200, width: 200 }} elevation={0} >
+      <Paper sx={{ height: 200, width: 200 }} elevation={0}>
         <Box>1111</Box>
         <Button>2121</Button>
-        <ModeSwitch />
         11
         <Button variant="outlined" onClick={toggleMode}>
           toggleMode

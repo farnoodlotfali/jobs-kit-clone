@@ -25,6 +25,7 @@ const theme = createTheme({
     light: {
       palette: {
         primary: COLORS.primary.light,
+        secondary: COLORS.secondary.light,
         success: COLORS.success.light,
         warning: COLORS.warning.light,
         info: COLORS.info.light,
@@ -38,6 +39,7 @@ const theme = createTheme({
     dark: {
       palette: {
         primary: COLORS.primary.dark,
+        secondary: COLORS.secondary.dark,
         success: COLORS.success.dark,
         warning: COLORS.warning.dark,
         info: COLORS.info.dark,
@@ -51,6 +53,26 @@ const theme = createTheme({
   spacing: SPACING,
   shape: {
     borderRadius: BORDER_RADIUS,
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          height: 48,
+          fontWeight: 600,
+          fontSize: 16,
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          paddingLeft: 6,
+          borderRadius: theme.shape.borderRadius,
+          minHeight: 30,
+        }),
+      },
+    },
   },
 });
 

@@ -4,6 +4,20 @@ const whiteColor = "#ffffff";
 export const COLORS = {
   primary: {
     light: {
+      light: "#00000034",
+      main: "#000",
+      dark: "#000",
+      contrastText: whiteColor,
+    },
+    dark: {
+      light: "#e6f6ee",
+      main: "#fff",
+      dark: "#fff",
+      contrastText: blackColor,
+    },
+  },
+  secondary: {
+    light: {
       light: "#e6f6ee",
       main: "#00a76f",
       dark: "#00633f",
@@ -34,15 +48,14 @@ export const COLORS = {
       900: "#00633f",
     },
   },
-
   background: {
     light: { default: "#f1f1f1", paper: "#fff" },
     dark: { default: "#161c24", paper: "#212B36" },
   },
 
   text: {
-    light: { primary: blackColor, secondary: "#acacac" },
-    dark: { primary: whiteColor, secondary: "#acacac" },
+    light: { primary: blackColor, secondary: "#666" },
+    dark: { primary: whiteColor, secondary: "#c4cdd5" },
   },
 
   success: {

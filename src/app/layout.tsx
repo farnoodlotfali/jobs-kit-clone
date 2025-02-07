@@ -1,11 +1,13 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { CssBaseline } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 
 import AppState from "@/context/AppState";
+import QueryProvider from "@/providers/QueryProvider";
 import Rtl from "@/theme/rtl-cache";
 
 export const metadata: Metadata = {
@@ -20,16 +22,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="rtl" suppressHydrationWarning>
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
       <body>
         <InitColorSchemeScript attribute="class" />
 
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <Rtl>
-            <AppState>
-              <CssBaseline />
-              {children}
-            </AppState>
+            <CssBaseline />
+            <QueryProvider>
+              <AppState>
+                <NuqsAdapter>{children}</NuqsAdapter>
+              </AppState>
+            </QueryProvider>
           </Rtl>
         </AppRouterCacheProvider>
       </body>
