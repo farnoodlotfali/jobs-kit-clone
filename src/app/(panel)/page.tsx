@@ -1,27 +1,19 @@
-// import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { Suspense } from "react";
 import { Metadata } from "next";
 
+import LoadingSpinner from "@/components/LoadingSpinner";
 import JobsListScreen from "@/components/screens/job-list";
-
-// import { prefetchInfiniteJobs } from "@/hooks/queries";
-// import { PJobFilter } from "@/types/api/job";
 
 export const metadata: Metadata = {
   title: "جابزکیت - شغل‌ها",
 };
 
-// type PageProps = {
-//   searchParams: PJobFilter;
-// };
-
-const JobsList = async () =>
-  // { searchParams }: PageProps
-  {
-    return (
-      // <HydrationBoundary state={dehydrate(await prefetchInfiniteJobs(searchParams))}>
+const JobsList = async () => {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
       <JobsListScreen />
-      // </HydrationBoundary>
-    );
-  };
+    </Suspense>
+  );
+};
 
 export default JobsList;

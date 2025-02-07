@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -31,13 +32,18 @@ const DynamicHeader = dynamic(() => import("./ProfilePopover"), {
 });
 const HEADER_ITEMS = [
   {
-    title: "صفحه اصلی",
+    title: "شغل‌ها",
     link: PAGE_URL.home,
+  },
+  {
+    title: "شغل‌ها ssr",
+    link: PAGE_URL.jobSSR,
   },
 ];
 
 const Header = () => {
   const { toggleDrawer } = useAppContext();
+  const pathname = usePathname();
 
   return (
     <AppBar
@@ -79,13 +85,14 @@ const Header = () => {
               <Typography
                 key={item.link}
                 sx={{
+                  color: pathname === item.link ? "secondary.main" : "text.primary",
                   display: "flex",
                   alignItems: "center",
                   gap: 1.5,
                   fontSize: 14,
                   transition: "all 0.3s",
                   ":hover": {
-                    color: "grey.600",
+                    opacity: 0.8,
                     "& .dot": {
                       visibility: "visible",
                     },
@@ -96,7 +103,7 @@ const Header = () => {
                 prefetch={false}
               >
                 <FiberManualRecordIcon
-                  sx={{ fontSize: 10, visibility: "hidden" }}
+                  sx={{ fontSize: 10, visibility: pathname === item.link ? "visible" : "hidden" }}
                   className="dot"
                 />
                 {item.title}

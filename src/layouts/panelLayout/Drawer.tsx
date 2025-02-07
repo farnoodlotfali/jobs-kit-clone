@@ -20,8 +20,12 @@ import { useAppContext } from "@/hooks/useAppContext";
 const drawerWidth = 240;
 const DRAWER_ITEMS = [
   {
-    title: "صفحه اصلی",
+    title: "شغل‌ها",
     link: PAGE_URL.home,
+  },
+  {
+    title: "شغل‌ها ssr",
+    link: PAGE_URL.jobSSR,
   },
 ];
 

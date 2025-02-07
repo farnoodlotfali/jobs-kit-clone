@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useState } from "react";
-// import { useQueryState } from "nuqs";
+import { useQueryState } from "nuqs";
 import { useInView } from "react-intersection-observer";
 import { useDebouncedCallback } from "use-debounce";
 import SearchTwoToneIcon from "@mui/icons-material/SearchTwoTone";
@@ -12,12 +12,10 @@ import JobCardLoading from "@/components/JobCardLoading";
 import { useInfiniteJobs } from "@/hooks/queries";
 
 const JobsListScreen = () => {
-  //   const [filterParam, setFilterParam] = useQueryState("title", { defaultValue: "" });
-  const [title, setTitle] = useState("");
-  // const [title, setTitle] = useState(filterParam);
+  const [filterParam, setFilterParam] = useQueryState("title", { defaultValue: "" });
+  const [title, setTitle] = useState(filterParam);
   const debounced = useDebouncedCallback((value) => {
-    //   setFilterParam(value);
-    console.log(value);
+    setFilterParam(value);
   }, 1000);
 
   const { ref, inView } = useInView();
@@ -27,10 +25,10 @@ const JobsListScreen = () => {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteJobs(
-    {}
-    // {
-    //   title: filterParam,
-    // }
+    {},
+    {
+      title: filterParam,
+    }
   );
 
   // fetch next page when reaching to end of list
@@ -86,9 +84,3 @@ const JobsListScreen = () => {
 };
 
 export default JobsListScreen;
-
-// const JobsListScreen = () => {
-//   return <div>JobsListScreen</div>;
-// };
-
-// export default JobsListScreen;
