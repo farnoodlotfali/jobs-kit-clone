@@ -8,5 +8,5 @@ export interface ICompany {
   imageId: number;
   imageURL: string;
   phone: string;
-  size: string;
+  size: number;
 }

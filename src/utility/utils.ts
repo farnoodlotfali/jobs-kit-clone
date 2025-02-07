@@ -1,3 +1,5 @@
+import { IJob } from "@/types/schema/job";
+
 // should return query string with given filter object
 export const renderQueryKey = (queryKeys: any[]) => {
   const newQueryKeys = queryKeys;
@@ -55,4 +57,51 @@ export const handleCapitalize = (val: string) => {
     .toLowerCase()
     .replace(/_/g, " ")
     .replace(/\b\w/g, (char) => char.toUpperCase());
+};
+
+// should return capitalize string
+export const fakeJob = (title: string, categoryName: string): IJob => {
+  return {
+    id: 424589,
+    title: title,
+    featured: false,
+    datePosted: "2025-02-07T13:02:49.000Z",
+    expirationDate: "2025-03-07T13:02:49.000Z",
+    employmentType: "FULL_TIME",
+    positionLevel: "UNKNOWN",
+    company: {
+      id: 3116,
+      name: "Tech Consulting",
+      industry: "IT Services and IT Consulting",
+      description: "",
+      address: "",
+      phone: "",
+      email: "",
+      size: 0,
+      imageId: 167138,
+      imageURL:
+        "https://media.licdn.com/dms/image/v2/D4D0BAQGWqy62p3pYzg/company-logo_100_100/company-logo_100_100/0/1695233033644/techconsultingusa_logo?e=2147483647&v=beta&t=rpKCltxf0QgS9LRBARInjNiw6vlAEqegrSUfxdGvUfk",
+    },
+    country: "UNITED_STATES",
+    location: "Los Angeles, CA",
+    category: {
+      id: 4,
+      name: categoryName,
+      slug: "development-and-it",
+      icon: "",
+    },
+    subCategory: {
+      id: 4,
+      name: "Mobile App Development",
+      slug: "mobile-app-development",
+    },
+    speciality: {
+      id: 5,
+      name: "Flutter Developer",
+      slug: "flutter-developer",
+    },
+    jobType: "RELOCATION",
+    views: 0,
+    shares: 0,
+  };
 };
