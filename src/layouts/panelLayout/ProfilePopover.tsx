@@ -22,7 +22,7 @@ const ProfilePopover = () => {
 
   if (!user) {
     return (
-      <Button variant="outlined" sx={{ height: 36 }}>
+      <Button variant="outlined" sx={{ height: 36 }} LinkComponent={Link} href={PAGE_URL.login}>
         ورود
       </Button>
     );

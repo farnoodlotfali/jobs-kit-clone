@@ -30,7 +30,7 @@ const DRAWER_ITEMS = [
 ];
 
 const Drawer = () => {
-  const { toggleDrawer, showDrawer } = useAppContext();
+  const { toggleDrawer, showDrawer, user } = useAppContext();
 
   return (
     <MuiDrawer
@@ -72,6 +72,13 @@ const Drawer = () => {
         </Stack>
         <Divider />
         <List>
+          {!user && (
+            <ListItem disablePadding component={Link} href={PAGE_URL.login} prefetch={true}>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary="ورود" />
+              </ListItemButton>
+            </ListItem>
+          )}
           {DRAWER_ITEMS.map((item) => (
             <ListItem
               key={item.link}
