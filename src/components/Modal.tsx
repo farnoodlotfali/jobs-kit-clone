@@ -32,7 +32,7 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = ({ open, onClose, maxWidt
                 bgcolor: "background.default",
                 position: "absolute",
                 top: -25,
-                left: -20,
+                left: -5,
                 zIndex: 2,
                 width: "fit-content",
                 height: "fit-content",
