@@ -15,9 +15,9 @@ type PageProps = {
 
 const JobsList = async ({ searchParams }: PageProps) => {
   return (
-    <HydrationBoundary state={dehydrate(await prefetchInfiniteJobs(searchParams))}>
-      <JobsListScreen />
-    </HydrationBoundary>
+    // <HydrationBoundary state={dehydrate(await prefetchInfiniteJobs(searchParams))}>
+    <JobsListScreen />
+    // </HydrationBoundary>
   );
 };
 
