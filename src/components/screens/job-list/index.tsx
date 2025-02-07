@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQueryState } from "nuqs";
 import { useInView } from "react-intersection-observer";
 import { useDebouncedCallback } from "use-debounce";
@@ -11,7 +11,11 @@ import JobCard from "@/components/JobCard";
 import JobCardLoading from "@/components/JobCardLoading";
 import { useInfiniteJobs } from "@/hooks/queries";
 
-const JobsListScreen = () => {
+type JobsListScreenProps = {
+  hasUser: boolean;
+};
+
+const JobsListScreen: React.FC<JobsListScreenProps> = ({ hasUser }) => {
   const [filterParam, setFilterParam] = useQueryState("title", { defaultValue: "" });
   const [title, setTitle] = useState(filterParam);
   const debounced = useDebouncedCallback((value) => {
@@ -24,7 +28,9 @@ const JobsListScreen = () => {
     data: allJobs,
     fetchNextPage,
     hasNextPage,
+    isPlaceholderData,
   } = useInfiniteJobs(
+    hasUser,
     {},
     {
       title: filterParam,
@@ -60,24 +66,24 @@ const JobsListScreen = () => {
 
       <Grid2 container spacing={{ md: 6, xs: 4 }} mt={6} pb={10}>
         {allJobs?.pages[0].data.length !== 0 ? (
-          allJobs?.pages.map((page, i) => (
-            <Fragment key={i}>
-              {page?.data.map((item) => {
-                return (
-                  <Grid2 key={item.id} size={{ md: 4, sm: 6, xs: 10 }} offset={{ sm: 0, xs: 1 }}>
-                    <JobCard job={item} />
-                  </Grid2>
-                );
-              })}
-            </Fragment>
-          ))
+          <>
+            {!isPlaceholderData &&
+              allJobs?.pages.map((page) =>
+                page?.data.map((item) => {
+                  return (
+                    <Grid2 key={item.id} size={{ md: 4, sm: 6, xs: 10 }} offset={{ sm: 0, xs: 1 }}>
+                      <JobCard job={item} />
+                    </Grid2>
+                  );
+                })
+              )}
+            <JobCardLoading ref={ref} isPlaceholderData={isPlaceholderData} />
+          </>
         ) : (
           <Typography pt={2} pl={2}>
             شغلی یافت نشد
           </Typography>
         )}
-
-        <JobCardLoading ref={ref} />
       </Grid2>
     </Container>
   );

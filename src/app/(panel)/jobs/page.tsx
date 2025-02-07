@@ -1,7 +1,9 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 
 import JobsListScreen from "@/components/screens/job-list";
+import { USER_TOKEN } from "@/constants/storage";
 import { prefetchInfiniteJobs } from "@/hooks/queries";
 import { PJobFilter } from "@/types/api/job";
 
@@ -14,9 +16,10 @@ type PageProps = {
 };
 
 const JobsList = async ({ searchParams }: PageProps) => {
+  const token = (await cookies()).get(USER_TOKEN);
   return (
-    <HydrationBoundary state={dehydrate(await prefetchInfiniteJobs(searchParams))}>
-      <JobsListScreen />
+    <HydrationBoundary state={dehydrate(await prefetchInfiniteJobs(searchParams, token?.value))}>
+      <JobsListScreen hasUser={!!token} />
     </HydrationBoundary>
   );
 };
